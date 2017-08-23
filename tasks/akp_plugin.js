@@ -7,44 +7,43 @@
  */
 
 'use strict';
+var _ = require('lodash');
+var fs = require('node-fs');
 
 module.exports = function(grunt) {
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
+  console.log('###################################');
+  console.log('My akp_plugin Begin 0');
 
   grunt.registerMultiTask('akp_plugin', 'The best Grunt plugin ever.', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
+        src: "src/patterns.html",
+        dest: "dist/",
+        handler: "<!--ABSSBA-->"
     });
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
-
-      // Handle options.
-      src += options.punctuation;
-
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
-
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });
+    console.log(options.src);
+    console.log(options.dest);
+    console.log(options.handler);
+  
+    console.log('My akp_plugin Begin');
+    var sourceHtml = fs.readFileSync(options.src, 'utf8');
+    console.log(sourceHtml);
+    var sourceHtmlgArray = sourceHtml.split(options.handler);
+    console.log('sourceHtmlgArray[0]');
+    console.log(sourceHtmlgArray[0]);
+    console.log('sourceHtmlgArray[1]');
+    console.log(sourceHtmlgArray[1]);
+    console.log(options.dest+'abc1.html');
+    console.log(options.dest+'abc2.html');
+    if(!fs.existsSync(options.dest))
+      fs.mkdirSync(options.dest);
+    fs.writeFileSync(options.dest+'abc1.html', sourceHtmlgArray[0], 'utf-8');
+    fs.writeFileSync(options.dest+'abc2.html', sourceHtmlgArray[1], 'utf-8');
+    console.log('My akp_plugin End');      
+    console.log('###################################');
   });
 
 };

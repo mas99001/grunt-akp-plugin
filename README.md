@@ -23,16 +23,35 @@ grunt.loadNpmTasks('grunt-akp-plugin');
 In your project's Gruntfile, add a section named `akp_plugin` to the data object passed into `grunt.initConfig()`.
 
 ```js
-grunt.initConfig({
-  akp_plugin: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+module.exports = function (grunt) {
+    grunt.initConfig({
+        akp_plugin: {
+          options: {
+            src: "src/abc.html",
+            dest: "destination/",
+            handler: "<!--DS22SD-->"
+          },
+          files: {
+            'dest/default_options': ['src/srcfile', 'src/123'],
+          }
+        },
+      });
+    grunt.registerTask('default', ['akp_plugin']);
+    grunt.loadNpmTasks('grunt-akp-plugin');
+}
+```
+##Package.json
+
+```js
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-akp-plugin": "^0.1.1",
+    "node-fs": "^0.1.7"
   },
-});
+  "engines": {
+    "node": ">=0.8.0"
+  }
 ```
 
 ### Options
