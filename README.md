@@ -27,7 +27,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         akp_plugin: {
           options: {
-            src: "src/abc.html",
+            src: "src/",
             dest: "destination/",
             handler: "<!--DS22SD-->"
           },
