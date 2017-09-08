@@ -1,7 +1,7 @@
 {
   "name": "grunt-akp-plugin",
   "description": "The best Grunt plugin ever.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "homepage": "https://github.com/mas99001/grunt-akp-plugin",
   "author": {
     "name": "Aditya Kumar",
